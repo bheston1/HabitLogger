@@ -43,6 +43,21 @@ namespace HabitLogger
             Menu.ShowMenu();
         }
 
+        internal static void DeleteRecord()
+        {
+            ViewRecords();
+            var recordId = GetNumberInput("Enter ID of record to delete: ");
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = $"DELETE FROM Habits WHERE Id = '{recordId}'";
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            Menu.ShowMenu();
+        }
+
         internal static void ViewRecords()
         {
             Console.Clear();
@@ -78,8 +93,6 @@ namespace HabitLogger
                     Console.WriteLine($"{record.Id}. {record.Date.ToString("MM/dd/yyyy")} - {record.Name} - {record.Measurement}: {record.Quantity}");
                 }
                 Console.WriteLine("--------------------------------------------------------------------------------------------");
-                Console.WriteLine("Return to menu - ENTER");
-                Helpers.PressEnter();
             }
         }
 
