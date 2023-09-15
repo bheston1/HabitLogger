@@ -43,6 +43,46 @@ namespace HabitLogger
             Menu.ShowMenu();
         }
 
+        internal static void ViewRecords()
+        {
+            Console.Clear();
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM Habits";
+                List<Habit> records = new();
+                SqliteDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        records.Add(new Habit
+                        {
+                            Id = reader.GetInt32(0),
+                            Date = DateTime.ParseExact(reader.GetString(1), "MM/dd/yyyy", new CultureInfo("en-US")),
+                            Name = reader.GetString(2),
+                            Measurement = reader.GetString(3),
+                            Quantity = reader.GetInt32(4),
+                        });
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No records found");
+                }
+                connection.Close();
+                Console.WriteLine("--------------------------------------------------------------------------------------------");
+                foreach (var record in records)
+                {
+                    Console.WriteLine($"{record.Id}. {record.Date.ToString("MM/dd/yyyy")} - {record.Name} - {record.Measurement}: {record.Quantity}");
+                }
+                Console.WriteLine("--------------------------------------------------------------------------------------------");
+                Console.WriteLine("Return to menu - ENTER");
+                Helpers.PressEnter();
+            }
+        }
+
         private static string GetHabitMeasurement()
         {
             Console.Write("\nEnter habit unit of measurement (e.g., glasses of water, cigarettes, etc.: ");

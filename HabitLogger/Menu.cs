@@ -13,6 +13,7 @@ namespace HabitLogger
             bool closeApp = false;
             while (closeApp == false)
             {
+                Console.Clear();
                 Console.WriteLine("Habit Logger");
                 Console.WriteLine("============");
                 Console.WriteLine(@"Select option:
@@ -31,7 +32,7 @@ namespace HabitLogger
                         break;
 
                     case "1":
-
+                        DatabaseFunctions.ViewRecords();
                         break;
 
                     case "2":
