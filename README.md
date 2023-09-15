@@ -16,13 +16,13 @@ Additional Challenges:
 # Features
 * Console-based UI with menu for database operations
 
-![img01](https://github.com/bheston1/HabitLogger/assets/111481356/47687978-1546-4ed7-b34c-c2f1d2d16ffe)
+![img01](https://github.com/bheston1/HabitLogger/assets/111481356/937a4753-3306-4602-a4c4-c661da9a6e01)
 
 * User can create a habit to track
   - tracks date
   - allows for custom habits and type of measurement
   - tracks quantity
 
-![img02](https://github.com/bheston1/HabitLogger/assets/111481356/bec0822c-0137-4d63-8c0e-0f539b0ea25d)
+![img02](https://github.com/bheston1/HabitLogger/assets/111481356/c3057f05-89fb-4f47-928a-cf80f7c02749)
 
-![img03](https://github.com/bheston1/HabitLogger/assets/111481356/35ff7445-e41b-4c85-a6f1-035e7af1d936)
+![img03](https://github.com/bheston1/HabitLogger/assets/111481356/5d753878-7540-4f1d-a8ea-148133f906f9)
