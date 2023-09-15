@@ -35,7 +35,7 @@ namespace HabitLogger
                         break;
 
                     case "2":
-
+                        DatabaseFunctions.AddRecord();
                         break;
 
                     case "3":
