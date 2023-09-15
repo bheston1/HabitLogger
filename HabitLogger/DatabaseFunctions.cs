@@ -90,7 +90,7 @@ namespace HabitLogger
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Habits ORDER BY Date DESC";
+                command.CommandText = "SELECT * FROM Habits";
                 List<Habit> records = new();
                 SqliteDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
