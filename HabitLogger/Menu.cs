@@ -40,7 +40,7 @@ namespace HabitLogger
                         break;
 
                     case "3":
-
+                        DatabaseFunctions.UpdateRecord();
                         break;
 
                     case "4":

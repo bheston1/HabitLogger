@@ -51,7 +51,32 @@ namespace HabitLogger
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = $"DELETE FROM Habits WHERE Id = '{recordId}'";
+                command.CommandText = $"DELETE FROM Habits WHERE Id = {recordId}";
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            Menu.ShowMenu();
+        }
+
+        internal static void UpdateRecord()
+        {
+            ViewRecords();
+            var recordId = GetNumberInput("Enter ID of record to update: ");
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                var checkCommand = connection.CreateCommand();
+                checkCommand.CommandText = $"SELECT EXISTS(SELECT 1 FROM Habits WHERE Id = {recordId})";
+                int checkQuery = Convert.ToInt32(checkCommand.ExecuteScalar());
+                if (checkQuery == 0)
+                {
+                    Console.WriteLine($"Record with ID {recordId} does not exist");
+                    connection.Close();
+                    UpdateRecord();
+                }
+                int quantity = GetNumberInput("\nEnter new quantity: ");
+                var command = connection.CreateCommand();
+                command.CommandText = $"UPDATE Habits SET Quantity = {quantity} WHERE Id = {recordId}";
                 command.ExecuteNonQuery();
                 connection.Close();
             }
