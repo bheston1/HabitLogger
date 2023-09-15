@@ -34,7 +34,6 @@ namespace HabitLogger
         {
             Console.Write(message);
             string numberInput = Console.ReadLine();
-            if (numberInput.Trim().ToLower() == "r") Menu.ShowMenu();
             while (!Int32.TryParse(numberInput, out _) || Convert.ToInt32(numberInput) < 0)
             {
                 Console.WriteLine("\nInvalid number. Try again.");
@@ -46,9 +45,8 @@ namespace HabitLogger
 
         internal static string GetDateInput()
         {
-            Console.Write("Enter the date (format: mm/dd/yyyy) | Type 'r' to return to menu: ");
+            Console.Write("Enter the date (format: mm/dd/yyyy): ");
             string dateInput = Console.ReadLine();
-            if (dateInput.Trim().ToLower() == "r") Menu.ShowMenu();
             while (!DateTime.TryParseExact(dateInput, "MM/dd/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out _))
             {
                 Console.Write("Invalid date format. Try again: ");

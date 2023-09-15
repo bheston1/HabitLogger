@@ -46,7 +46,7 @@ namespace HabitLogger
         internal static void DeleteRecord()
         {
             ViewRecords();
-            var recordId = Helpers.GetNumberInput("Enter ID of record to delete | Type 'r' to return to menu: ");
+            var recordId = Helpers.GetNumberInput("Enter ID of record to delete: ");
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
@@ -61,7 +61,7 @@ namespace HabitLogger
         internal static void UpdateRecord()
         {
             ViewRecords();
-            var recordId = Helpers.GetNumberInput("Enter ID of record to update | Type 'r' to return to menu: ");
+            var recordId = Helpers.GetNumberInput("Enter ID of record to update: ");
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
@@ -90,7 +90,7 @@ namespace HabitLogger
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Habits";
+                command.CommandText = "SELECT * FROM Habits ORDER BY Date DESC";
                 List<Habit> records = new();
                 SqliteDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
