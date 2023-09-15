@@ -48,6 +48,8 @@ namespace HabitLogger
 
                     default:
                         Console.WriteLine("Invalid command. Press ENTER");
+                        Helpers.PressEnter();
+                        Console.Clear();
                         break;
                 }
             }
