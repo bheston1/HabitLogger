@@ -24,7 +24,7 @@ namespace HabitLogger
             string nameInput = Console.ReadLine();
             while (string.IsNullOrEmpty(nameInput))
             {
-                Console.Write("\nName cannot be empty.\nEnter your name: ");
+                Console.Write("Name cannot be empty. Enter habit name: ");
                 nameInput = Console.ReadLine();
             }
             return nameInput;
@@ -36,7 +36,7 @@ namespace HabitLogger
             string numberInput = Console.ReadLine();
             while (!Int32.TryParse(numberInput, out _) || Convert.ToInt32(numberInput) < 0)
             {
-                Console.WriteLine("\nInvalid number. Try again.");
+                Console.Write("Invalid number. Try again: ");
                 numberInput = Console.ReadLine();
             }
             int finalInput = Convert.ToInt32(numberInput);

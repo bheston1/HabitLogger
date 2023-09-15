@@ -127,7 +127,7 @@ namespace HabitLogger
             string measurementInput = Console.ReadLine();
             while (string.IsNullOrEmpty(measurementInput))
             {
-                Console.Write("\nEntry cannot be empty.\nTry again: ");
+                Console.Write("Entry cannot be empty. Try again: ");
                 measurementInput = Console.ReadLine();
             }
             return measurementInput;
