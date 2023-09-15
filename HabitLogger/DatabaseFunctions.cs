@@ -46,7 +46,7 @@ namespace HabitLogger
         internal static void DeleteRecord()
         {
             ViewRecords();
-            var recordId = Helpers.GetNumberInput("Enter ID of record to delete: ");
+            var recordId = Helpers.GetNumberInput("Enter ID of record to delete | Type 'r' to return to menu: ");
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
@@ -61,7 +61,7 @@ namespace HabitLogger
         internal static void UpdateRecord()
         {
             ViewRecords();
-            var recordId = Helpers.GetNumberInput("Enter ID of record to update: ");
+            var recordId = Helpers.GetNumberInput("Enter ID of record to update | Type 'r' to return to menu: ");
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
