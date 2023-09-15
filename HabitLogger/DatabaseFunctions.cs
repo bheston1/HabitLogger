@@ -28,10 +28,10 @@ namespace HabitLogger
         internal static void AddRecord()
         {
             Console.Clear();
-            string date = GetDateInput();
-            string name = GetHabitName("\nEnter habit name: ");
+            string date = Helpers.GetDateInput();
+            string name = Helpers.GetHabitName("\nEnter habit name: ");
             string measurement = GetHabitMeasurement();
-            int quantity = GetNumberInput("\nEnter quantity: ");
+            int quantity = Helpers.GetNumberInput("\nEnter quantity: ");
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
@@ -46,7 +46,7 @@ namespace HabitLogger
         internal static void DeleteRecord()
         {
             ViewRecords();
-            var recordId = GetNumberInput("Enter ID of record to delete: ");
+            var recordId = Helpers.GetNumberInput("Enter ID of record to delete: ");
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
@@ -61,7 +61,7 @@ namespace HabitLogger
         internal static void UpdateRecord()
         {
             ViewRecords();
-            var recordId = GetNumberInput("Enter ID of record to update: ");
+            var recordId = Helpers.GetNumberInput("Enter ID of record to update: ");
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
@@ -74,7 +74,7 @@ namespace HabitLogger
                     connection.Close();
                     UpdateRecord();
                 }
-                int quantity = GetNumberInput("\nEnter new quantity: ");
+                int quantity = Helpers.GetNumberInput("\nEnter new quantity: ");
                 var command = connection.CreateCommand();
                 command.CommandText = $"UPDATE Habits SET Quantity = {quantity} WHERE Id = {recordId}";
                 command.ExecuteNonQuery();
@@ -131,43 +131,6 @@ namespace HabitLogger
                 measurementInput = Console.ReadLine();
             }
             return measurementInput;
-        }
-
-        private static string GetHabitName(string message)
-        {
-            Console.Write(message);
-            string nameInput = Console.ReadLine();
-            while (string.IsNullOrEmpty(nameInput))
-            {
-                Console.Write("\nName cannot be empty.\nEnter your name: ");
-                nameInput = Console.ReadLine();
-            }
-            return nameInput;
-        }
-
-        private static int GetNumberInput(string message)
-        {
-            Console.Write(message);
-            string numberInput = Console.ReadLine();
-            while (!Int32.TryParse(numberInput, out _) || Convert.ToInt32(numberInput) < 0)
-            {
-                Console.WriteLine("\nInvalid number. Try again.");
-                numberInput = Console.ReadLine();
-            }
-            int finalInput = Convert.ToInt32(numberInput);
-            return finalInput;
-        }
-
-        private static string GetDateInput()
-        {
-            Console.Write("Enter the date (format: mm/dd/yyyy): ");
-            string dateInput = Console.ReadLine();
-            while (!DateTime.TryParseExact(dateInput, "MM/dd/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out _))
-            {
-                Console.Write("Invalid date format. Try again: ");
-                dateInput = Console.ReadLine();
-            }
-            return dateInput;
         }
     }
 }
